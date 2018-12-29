@@ -989,7 +989,7 @@ bool OpenGLExampleBrowser::init(int argc, char* argv[])
 
 		m_internalData->m_myTexLoader = myTexLoader;
 
-		gui2->init(width, height, m_internalData->m_gwenRenderer, s_window->getRetinaScale());
+		gui2->init(width, height, m_internalData->m_gwenRenderer, s_window->getRetinaScale(), args.CheckCmdLineFlag("nobrowser"));
 	}
 	//gui = 0;// new GwenUserInterface;
 

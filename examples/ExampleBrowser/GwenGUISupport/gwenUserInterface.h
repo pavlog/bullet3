@@ -24,7 +24,7 @@ public:
 
 	virtual ~GwenUserInterface();
 
-	void init(int width, int height, Gwen::Renderer::Base* gwenRenderer, float retinaScale);
+	void init(int width, int height, Gwen::Renderer::Base* gwenRenderer, float retinaScale, bool nobrowser);
 	void exit();
 	void setFocus();
 	void forceUpdateScrollBars();

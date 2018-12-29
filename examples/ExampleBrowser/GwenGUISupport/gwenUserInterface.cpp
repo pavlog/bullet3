@@ -233,7 +233,7 @@ void GwenUserInterface::registerQuitCallback(b3QuitCallback callback)
 	m_data->m_menuItems->m_quitCallback = callback;
 }
 
-void GwenUserInterface::init(int width, int height, Gwen::Renderer::Base* renderer, float retinaScale)
+void GwenUserInterface::init(int width, int height, Gwen::Renderer::Base* renderer, float retinaScale, bool nobrowser)
 {
 	m_data->m_curYposition = 20;
 	//m_data->m_primRenderer = new GLPrimitiveRenderer(width,height);
@@ -375,6 +375,11 @@ void GwenUserInterface::init(int width, int height, Gwen::Renderer::Base* render
 	m_data->m_exampleInfoTextOutput->SetPos(2, 332);
 	m_data->m_exampleInfoTextOutput->SetHeight(150);
 	m_data->m_exampleInfoTextOutput->SetWidth(233);
+  
+  if( nobrowser )
+  {
+    windowLeft->Hide();
+  }
 }
 
 void GwenUserInterface::forceUpdateScrollBars()

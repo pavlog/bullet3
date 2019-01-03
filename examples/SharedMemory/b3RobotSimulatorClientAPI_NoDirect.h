@@ -598,6 +598,7 @@ public:
 	int addUserDebugParameter(char *paramName, double rangeMin, double rangeMax, double startValue);
 
 	double readUserDebugParameter(int itemUniqueId);
+  int writeUserDebugParameter(int itemUniqueId,double value);
 
 	bool removeUserDebugItem(int itemUniqueId);
 

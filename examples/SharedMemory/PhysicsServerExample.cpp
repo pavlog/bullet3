@@ -1198,6 +1198,18 @@ public:
 		}
 		return 0;
 	}
+  virtual int writeUserDebugParameter(int itemUniqueId, double value)
+  {
+    for (int i = 0; i < m_userDebugParams.size(); i++)
+    {
+      if (m_userDebugParams[i]->m_itemUniqueId == itemUniqueId)
+      {
+        m_userDebugParams[i]->m_value = value;
+        return 1;
+      }
+    }
+    return 0;
+  }
 	int m_userDebugParamUid;
 
 	virtual int addUserDebugParameter(const char* txt, double rangeMin, double rangeMax, double startValue)

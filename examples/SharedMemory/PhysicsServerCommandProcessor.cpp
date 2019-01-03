@@ -4746,6 +4746,16 @@ bool PhysicsServerCommandProcessor::processUserDebugDrawCommand(const struct Sha
 			serverCmd.m_type = CMD_USER_DEBUG_DRAW_PARAMETER_COMPLETED;
 		}
 	}
+  if (clientCmd.m_updateFlags & USER_DEBUG_WRITE_PARAMETER)
+  {
+    int ok = m_data->m_guiHelper->writeUserDebugParameter(
+                                                         clientCmd.m_userDebugDrawArgs.m_itemUniqueId,
+                                                         clientCmd.m_userDebugDrawArgs.m_startValue);
+    if (ok)
+    {
+      serverCmd.m_type = CMD_USER_DEBUG_DRAW_PARAMETER_COMPLETED;
+    }
+  }
 	if ((clientCmd.m_updateFlags & USER_DEBUG_SET_CUSTOM_OBJECT_COLOR) || (clientCmd.m_updateFlags & USER_DEBUG_REMOVE_CUSTOM_OBJECT_COLOR))
 	{
 		int bodyUniqueId = clientCmd.m_userDebugDrawArgs.m_objectUniqueId;

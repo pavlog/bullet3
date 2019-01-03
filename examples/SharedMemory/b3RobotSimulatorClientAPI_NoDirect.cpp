@@ -1488,6 +1488,30 @@ double b3RobotSimulatorClientAPI_NoDirect::readUserDebugParameter(int itemUnique
 	return 0;
 }
 
+int b3RobotSimulatorClientAPI_NoDirect::writeUserDebugParameter(int itemUniqueId,double value)
+{
+  b3PhysicsClientHandle sm = m_data->m_physicsClientHandle;
+  if (sm == 0)
+  {
+    b3Warning("Not connected to physics server.");
+    return 0;
+  }
+  b3SharedMemoryCommandHandle commandHandle;
+  b3SharedMemoryStatusHandle statusHandle;
+  int statusType;
+  
+  commandHandle = b3InitUserDebugWriteParameter(sm, itemUniqueId,value);
+  statusHandle = b3SubmitClientCommandAndWaitStatus(sm, commandHandle);
+  statusType = b3GetStatusType(statusHandle);
+  
+  if (statusType == CMD_USER_DEBUG_DRAW_PARAMETER_COMPLETED)
+  {
+      return 1;
+  }
+  b3Warning("readUserDebugParameter failed.");
+  return 0;
+}
+
 bool b3RobotSimulatorClientAPI_NoDirect::removeUserDebugItem(int itemUniqueId)
 {
 	b3PhysicsClientHandle sm = m_data->m_physicsClientHandle;

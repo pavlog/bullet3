@@ -3472,6 +3472,20 @@ B3_SHARED_API b3SharedMemoryCommandHandle b3InitUserDebugReadParameter(b3Physics
 	return (b3SharedMemoryCommandHandle)command;
 }
 
+B3_SHARED_API b3SharedMemoryCommandHandle b3InitUserDebugWriteParameter(b3PhysicsClientHandle physClient, int debugItemUniqueId, double value)
+{
+  PhysicsClient* cl = (PhysicsClient*)physClient;
+  b3Assert(cl);
+  b3Assert(cl->canSubmitCommand());
+  struct SharedMemoryCommand* command = cl->getAvailableSharedMemoryCommand();
+  b3Assert(command);
+  command->m_type = CMD_USER_DEBUG_DRAW;
+  command->m_updateFlags = USER_DEBUG_WRITE_PARAMETER;
+  command->m_userDebugDrawArgs.m_itemUniqueId = debugItemUniqueId;
+  command->m_userDebugDrawArgs.m_startValue = value;
+  return (b3SharedMemoryCommandHandle)command;
+}
+
 B3_SHARED_API int b3GetStatusDebugParameterValue(b3SharedMemoryStatusHandle statusHandle, double* paramValue)
 {
 	const SharedMemoryStatus* status = (const SharedMemoryStatus*)statusHandle;

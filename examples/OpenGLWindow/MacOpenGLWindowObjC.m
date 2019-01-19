@@ -190,7 +190,7 @@ void dumpInfo(void)
 	
 	// Draw
 	//display();
-	
+  glClear(GL_COLOR_BUFFER_BIT);
 	[m_context flushBuffer];
 	[NSOpenGLContext clearCurrentContext];
 	
@@ -426,9 +426,6 @@ int Mac_createWindow(struct MacOpenGLWindowInternalData* m_internalData,struct M
     
     //dumpInfo();
     
-    
-    
-    
     [m_internalData->m_window setContentView: m_internalData->m_myview];
     
     
@@ -438,8 +435,7 @@ int Mac_createWindow(struct MacOpenGLWindowInternalData* m_internalData,struct M
     [m_internalData->m_window makeKeyAndOrderFront: nil];
     
     [m_internalData->m_myview MakeCurrent];
-    
-    
+  
     [NSApp activateIgnoringOtherApps:YES];
     
     

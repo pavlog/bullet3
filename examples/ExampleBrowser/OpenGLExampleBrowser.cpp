@@ -81,7 +81,6 @@ struct OpenGLExampleBrowserInternalData
 	GL3TexLoader* m_myTexLoader;
 	struct MyMenuItemHander* m_handler2;
 	btAlignedObjectArray<MyMenuItemHander*> m_handlers;
-  float time = 0.0f;
 
 	OpenGLExampleBrowserInternalData()
 		: m_gwenRenderer(0),
@@ -1218,12 +1217,10 @@ void OpenGLExampleBrowser::update(float deltaTime)
 			if (gFixedTimeStep > 0)
 			{
 				sCurrentDemo->stepSimulation(gFixedTimeStep);
-        this->m_internalData->time+=gFixedTimeStep;
 			}
 			else
 			{
 				sCurrentDemo->stepSimulation(deltaTime);  //1./60.f);
-        this->m_internalData->time+=deltaTime;
 			}
 		}
 
@@ -1263,7 +1260,7 @@ void OpenGLExampleBrowser::update(float deltaTime)
 			float camPos[3];
 			s_guiHelper->getRenderInterface()->getActiveCamera()->getCameraPosition(camPos);
 			s_guiHelper->getRenderInterface()->getActiveCamera()->getCameraTargetPosition(camTarget);
-      sprintf(msg, "time: %f, camTargetPos=%2.2f,%2.2f,%2.2f, dist=%2.2f, pitch=%2.2f, yaw=%2.2f", this->m_internalData->time,camTarget[0], camTarget[1], camTarget[2], camDist, pitch, yaw);
+      sprintf(msg, "camTargetPos=%2.2f,%2.2f,%2.2f, dist=%2.2f, pitch=%2.2f, yaw=%2.2f", camTarget[0], camTarget[1], camTarget[2], camDist, pitch, yaw);
 			gui2->setStatusBarMessage(msg, true);
 		}
 	}

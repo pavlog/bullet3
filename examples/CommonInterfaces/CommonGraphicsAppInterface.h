@@ -191,7 +191,7 @@ struct CommonGraphicsApp
 				b3Vector3 cameraUp = b3MakeVector3(0, 0, 0);
 				cameraUp[camera->getCameraUpAxis()] = 1.f;
 
-				if (m_leftMouseButton)
+				if (m_leftMouseButton && isControlPressed)
 				{
 					//			if (b3Fabs(xDelta)>b3Fabs(yDelta))
 					//			{
@@ -202,7 +202,7 @@ struct CommonGraphicsApp
 					//			}
 				}
 
-				if (m_middleMouseButton)
+				if (m_middleMouseButton || (m_leftMouseButton && isAltPressed))
 				{
 					cameraTargetPosition += cameraUp * yDelta * 0.01;
 
